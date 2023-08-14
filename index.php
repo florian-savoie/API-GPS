@@ -205,7 +205,7 @@ file_put_contents($filename, $newRow, FILE_APPEND | LOCK_EX);
         <div class="row">
           <div class="alert alert-dismissible alert-secondary text-center">
             <strong> Vous pouvez également utiliser <a href="https://developer.mapquest.com/"
-                style="color: red;: ;">l'API MapQuest Geocoding</a> pour obtenir les coordonnées GPS à partir de
+                style="color: red;">l'API MapQuest Geocoding</a> pour obtenir les coordonnées GPS à partir de
               l'adresse fournie.
               MapQuest offre un quota gratuit de jusqu'à 15 000 requêtes par mois.
               En utilisant votre clé d'API, vous pouvez interroger leur service de géocodage en fournissant l'adresse.
