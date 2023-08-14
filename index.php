@@ -70,8 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Adresse2"]) && isset($
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.1/dist/cerulean/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -146,12 +144,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Adresse2"]) && isset($
               $longitude = $data[0]["lon"];
                         // Données à ajouter au fichier CSV
                         $dataCsv = [
-                          "code client", $adresse, $codePostal, $ville, "latitude : $latitude", "longitude : $longitude", "Ajouté"
+                          "code client", $adresse, $codePostal, $ville, $latitude,$longitude, "Ajouté"
                         ];
                         
   
   // Convertir les données en une ligne CSV
-  $newRow = implode(",", $dataCsv) . "\n";
+  $newRow = implode(";", $dataCsv) . "\n\r";
   
   // Nom du fichier
   $filename = 'data.csv';
@@ -175,11 +173,11 @@ file_put_contents($filename, $newRow, FILE_APPEND | LOCK_EX);
              ) {
                   // Données à ajouter au fichier CSV
                   $dataCsv = [
-                    "code client", $adresse, $codePostal, $ville, "latitude : $latitude", "longitude : $longitude", "introuvable"
+                    "code client", $adresse, $codePostal, $ville, $latitude ?? 0, $longitude ?? 0, "introuvable"
                   ];
                   
   // Convertir les données en une ligne CSV
-  $newRow = implode(",", $dataCsv) . "\n";
+  $newRow = implode(",", $dataCsv) . "\n\r";
   
   // Nom du fichier
   $filename = 'data.csv';
@@ -204,8 +202,8 @@ file_put_contents($filename, $newRow, FILE_APPEND | LOCK_EX);
       <div class="container mt-3" style="border:2px black solid ;padding : 20px ; border-radius : 1rem;">
         <div class="row">
           <div class="alert alert-dismissible alert-secondary text-center">
-            <strong> Vous pouvez également utiliser <a href="https://developer.mapquest.com/"
-                style="color: red;">l'API MapQuest Geocoding</a> pour obtenir les coordonnées GPS à partir de
+            <strong> Vous pouvez également utiliser <a href="https://developer.mapquest.com/" style="color: red;">l'API
+                MapQuest Geocoding</a> pour obtenir les coordonnées GPS à partir de
               l'adresse fournie.
               MapQuest offre un quota gratuit de jusqu'à 15 000 requêtes par mois.
               En utilisant votre clé d'API, vous pouvez interroger leur service de géocodage en fournissant l'adresse.
