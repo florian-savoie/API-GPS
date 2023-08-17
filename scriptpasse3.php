@@ -30,7 +30,7 @@ while (($ligne = fgetcsv($fichier, 0, ';')) !== false) {
         $adresseComplete2 = urlencode("{$adresse2} {$ville} {$codePostal}");
   
         // Clé d'API MapQuest
-        $api_key = geocode;
+        $apiKey = geocode;
  
         // Construire les URL de requête
         $url = "https://geocode.search.hereapi.com/v1/geocode?q={$adresseComplete}&apiKey={$apiKey}";

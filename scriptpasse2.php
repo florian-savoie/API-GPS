@@ -29,7 +29,7 @@ while (($ligne = fgetcsv($fichier, 0, ';')) !== false) {
         $adresseComplete2 = urlencode("{$adresse2} {$ville} {$codePostal}");
   
         // Clé d'API MapQuest
-        $api_key = mapquestapi;
+        $apiKey = mapquestapi;
  
         // Construire les URL de requête
         $url = "http://www.mapquestapi.com/geocoding/v1/address?key={$apiKey}&location={$adresseComplete}";
