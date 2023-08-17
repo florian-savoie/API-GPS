@@ -1,6 +1,7 @@
 <?php
 set_time_limit(36000);
 include './config.php';
+
 // Chemin vers le fichier CSV
 $cheminFichier = './data.csv';
 
@@ -12,7 +13,7 @@ $nouveauContenu = [];
 
 // Lire chaque ligne du fichier
 while (($ligne = fgetcsv($fichier, 0, ';')) !== false) {
-    sleep(2);
+    sleep(1);
     // $ligne est un tableau contenant les valeurs de la ligne courante
     $result = $ligne[8];
   
@@ -29,11 +30,11 @@ while (($ligne = fgetcsv($fichier, 0, ';')) !== false) {
         $adresseComplete2 = urlencode("{$adresse2} {$ville} {$codePostal}");
   
         // Clé d'API MapQuest
-        $api_key = mapquestapi;
+        $api_key = geocode;
  
         // Construire les URL de requête
-        $url = "http://www.mapquestapi.com/geocoding/v1/address?key={$apiKey}&location={$adresseComplete}";
-        $url2 = "http://www.mapquestapi.com/geocoding/v1/address?key={$apiKey}&location={$adresseComplete2}";
+        $url = "https://geocode.search.hereapi.com/v1/geocode?q={$adresseComplete}&apiKey={$apiKey}";
+        $url2 = "https://geocode.search.hereapi.com/v1/geocode?q={$adresseComplete2}&apiKey={$apiKey}";
 
         $context = stream_context_create(array(
             'http' => array(
@@ -46,10 +47,10 @@ while (($ligne = fgetcsv($fichier, 0, ';')) !== false) {
         // Convertir les données JSON en tableau associatif
         $data = json_decode($jsonData, true);
         
-        if (!empty($data)) {
+        if (!empty($data['items'])) {
            
-            $latitude = $data["results"][0]["locations"][0]["latLng"]["lat"];
-            $longitude = $data["results"][0]["locations"][0]["latLng"]["lng"];
+            $latitude = $data['items'][0]['position']['lat'];
+            $longitude = $data['items'][0]['position']['lng'];
             if ( $latitude == 38.89037 && $longitude == -77.03196){
                 $dataCsv = [
                     $codeClient, $nom, $adresse, $adresse2, $ville, $codePostal,"" ,"" , "introuvable"
@@ -62,9 +63,9 @@ while (($ligne = fgetcsv($fichier, 0, ';')) !== false) {
         } else{
             $jsonData2 = file_get_contents($url2, false, $context);
             $data2 = json_decode($jsonData2, true);
-            if (!empty($data2)) {
-                $latitude = $data2["results"][0]["locations"][0]["latLng"]["lat"];
-                $longitude = $data2["results"][0]["locations"][0]["latLng"]["lng"];
+            if (!empty($data2['items'])) {
+                $latitude = $data2['items'][0]['position']['lat'];
+                $longitude = $data2['items'][0]['position']['lng'];
                 if ( $latitude == 38.89037 && $longitude == -77.03196){
                     $dataCsv = [
                         $codeClient, $nom, $adresse, $adresse2, $ville, $codePostal,"" ,"" , "introuvable"

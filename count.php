@@ -1,6 +1,6 @@
 <?php
 // Chemin vers le fichier CSV
-$cheminFichier = './data.csv';
+$cheminFichier = './datagouv.csv';
 
 // Ouvrir le fichier en lecture
 $fichier = fopen($cheminFichier, 'r');

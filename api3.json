@@ -1,0 +1,49 @@
+{
+    "items": [
+        {
+            "title": "833 Chemin de la Petite Ile, 30150 Roquemaure, France",
+            "id": "here:af:streetsection:k-ZPzdV9azaBMytJGc5JGC:CggIBCDq5ealAxABGgM4MzM",
+            "resultType": "houseNumber",
+            "houseNumberType": "PA",
+            "address": {
+                "label": "833 Chemin de la Petite Ile, 30150 Roquemaure, France",
+                "countryCode": "FRA",
+                "countryName": "France",
+                "stateCode": "OCC",
+                "state": "Occitanie",
+                "county": "Gard",
+                "city": "Roquemaure",
+                "street": "Chemin de la Petite Ile",
+                "postalCode": "30150",
+                "houseNumber": "833"
+            },
+            "position": {
+                "lat": 44.04061,
+                "lng": 4.78454
+            },
+            "access": [
+                {
+                    "lat": 44.04059,
+                    "lng": 4.78446
+                }
+            ],
+            "mapView": {
+                "west": 4.78329,
+                "south": 44.03971,
+                "east": 4.78579,
+                "north": 44.04151
+            },
+            "scoring": {
+                "queryScore": 1.0,
+                "fieldScore": {
+                    "city": 1.0,
+                    "streets": [
+                        1.0
+                    ],
+                    "houseNumber": 1.0,
+                    "postalCode": 1.0
+                }
+            }
+        }
+    ]
+}
