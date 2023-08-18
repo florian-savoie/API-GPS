@@ -1,0 +1,5 @@
+index.php : Présentation de Mon Application
+script.php : Utilisation de Nominatim pour récupérer les coordonnées GPS
+script1.php : Utilisation de data.gouv pour récupérer les coordonnées GPS
+scriptpasse2.php : Utilisation de MapQuest API pour récupérer les coordonnées GPS
+scriptpasse3.php : Utilisation de Geocode pour récupérer les coordonnées GPS
